@@ -35,6 +35,7 @@ a {
 .site-header,
 .hero,
 .services,
+.enquiry,
 .cta {
   width: min(calc(100% - 96px), var(--max));
   margin-inline: auto;
@@ -56,9 +57,9 @@ a {
 
 .brand-logo {
   display: block;
-  width: 100%;
+  width: 128%;
   height: auto;
-  transform: translateX(-45px);
+  transform: translateX(-14%);
 }
 
 .brand-tagline {
@@ -306,6 +307,83 @@ h1 span,
 .service:first-child { padding-left: 0; }
 .service:last-child { border-right: 0; }
 
+.enquiry {
+  display: grid;
+  grid-template-columns: minmax(0, .7fr) minmax(360px, 1fr);
+  gap: 72px;
+  padding: 92px 0;
+  border-top: 1px solid var(--line);
+}
+
+.enquiry-heading .eyebrow {
+  margin: 0 0 15px;
+}
+
+.enquiry h2 {
+  max-width: 370px;
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.75rem);
+  letter-spacing: -.045em;
+  line-height: 1.05;
+}
+
+.enquiry-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 20px;
+}
+
+.enquiry-form label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.enquiry-form input,
+.enquiry-form textarea {
+  display: block;
+  width: 100%;
+  margin-top: 9px;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  outline: 0;
+  color: var(--text);
+  background: transparent;
+  font: 400 15px/1.4 inherit;
+  resize: vertical;
+}
+
+.enquiry-form input:focus,
+.enquiry-form textarea:focus {
+  border-color: var(--purple);
+}
+
+.enquiry-message {
+  grid-column: 1 / -1;
+}
+
+.enquiry-form button {
+  justify-self: start;
+  padding: 0 0 8px;
+  border: 0;
+  border-bottom: 1px solid var(--purple);
+  color: var(--purple);
+  background: transparent;
+  cursor: pointer;
+  font: 600 12px/1.2 inherit;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.enquiry-form button:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
 .service-number {
   display: block;
   margin-bottom: 8px;
@@ -380,7 +458,7 @@ h1 span,
 }
 
 @media (max-width: 1050px) {
-  .site-header, .hero, .services, .cta {
+  .site-header, .hero, .services, .enquiry, .cta {
     width: min(calc(100% - 48px), var(--max));
   }
 
@@ -405,10 +483,15 @@ h1 span,
 
   .service:nth-child(3) { border-right: 0; }
   .service:nth-child(4) { padding-left: 0; }
+
+  .enquiry {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
 @media (max-width: 700px) {
-  .site-header, .hero, .services, .cta {
+  .site-header, .hero, .services, .enquiry, .cta {
     width: min(calc(100% - 32px), var(--max));
   }
 
@@ -416,6 +499,10 @@ h1 span,
     min-height: 105px;
     display: block;
     padding-top: 34px;
+  }
+
+  .brand {
+    width: min(380px, 100%);
   }
 
   .brand-tagline {
@@ -457,6 +544,15 @@ h1 span,
 
   .service:last-child {
     border-bottom: 0;
+  }
+
+  .enquiry {
+    padding: 64px 0;
+    gap: 34px;
+  }
+
+  .enquiry-form {
+    grid-template-columns: 1fr;
   }
 
   .section-heading {

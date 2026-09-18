@@ -117,6 +117,29 @@
       </div>
     </section>
 
+    <section class="enquiry" id="enquiry" aria-labelledby="enquiry-title">
+      <div class="enquiry-heading">
+        <p class="eyebrow">START A CONVERSATION</p>
+        <h2 id="enquiry-title">Tell us what you’re building.</h2>
+      </div>
+
+      <form class="enquiry-form" action="mailto:riseninovations@gmail.com" method="post" enctype="text/plain">
+        <label>
+          Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label class="enquiry-message">
+          Project details
+          <textarea name="message" rows="3" required></textarea>
+        </label>
+        <button type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+      </form>
+    </section>
+
     <section class="cta" aria-labelledby="cta-title">
       <div class="cta-line" aria-hidden="true"></div>
       <h2 id="cta-title">Let's build something <span>digital.</span></h2>
