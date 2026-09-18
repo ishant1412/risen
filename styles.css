@@ -384,6 +384,19 @@ h1 span,
   border-color: var(--text);
 }
 
+.enquiry-form button:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+
+.form-status {
+  grid-column: 1 / -1;
+  min-height: 1.4em;
+  margin: -8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .service-number {
   display: block;
   margin-bottom: 8px;

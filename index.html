@@ -123,7 +123,7 @@
         <h2 id="enquiry-title">Tell us what you’re building.</h2>
       </div>
 
-      <form class="enquiry-form" action="mailto:riseninovations@gmail.com" method="post" enctype="text/plain">
+      <form class="enquiry-form" id="enquiry-form" action="https://script.google.com/macros/s/AKfycbwioo4Ax0l4AUM-f9UDq6PNh4BscTu-ZZL-BoNjc0hMHR6SEIQJFsU5TIIgzqKehS0r/exec" method="post">
         <label>
           Name
           <input type="text" name="name" autocomplete="name" required>
@@ -136,7 +136,10 @@
           Project details
           <textarea name="message" rows="3" required></textarea>
         </label>
+        <input type="hidden" name="source" value="Website enquiry form">
+        <input type="hidden" name="submitted_at" id="submitted-at">
         <button type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
     </section>
 
@@ -151,5 +154,35 @@
       <p class="footer-note">HIGHER TOGETHER</p>
     </section>
   </main>
+  <script>
+    // URL-encoded values are accessible in Apps Script as e.parameter.name,
+    // e.parameter.email, e.parameter.message, e.parameter.source, and e.parameter.submitted_at.
+    const enquiryForm = document.getElementById('enquiry-form');
+    const submittedAt = document.getElementById('submitted-at');
+    const formStatus = document.getElementById('form-status');
+    const submitButton = enquiryForm.querySelector('button[type="submit"]');
+
+    enquiryForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      submittedAt.value = new Date().toISOString();
+      submitButton.disabled = true;
+      formStatus.textContent = 'Sending your enquiry…';
+
+      try {
+        await fetch(enquiryForm.action, {
+          method: 'POST',
+          body: new URLSearchParams(new FormData(enquiryForm)),
+          // Apps Script web apps often omit CORS headers. This still submits the request.
+          mode: 'no-cors'
+        });
+        enquiryForm.reset();
+        formStatus.textContent = 'Thanks — your enquiry has been sent.';
+      } catch (error) {
+        formStatus.textContent = 'We could not send your enquiry. Please try again or email us directly.';
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
 </body>
 </html>
